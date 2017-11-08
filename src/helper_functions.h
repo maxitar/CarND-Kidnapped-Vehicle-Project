@@ -58,6 +58,12 @@ inline double dist(double x1, double y1, double x2, double y2) {
 	return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
+inline double gaussian(double x[], double mu[], double std[]) {
+  double exponent = (x[0]-mu[0])*(x[0]-mu[0])/(2.*std[0]*std[0]) + (x[1]-mu[1])*(x[1]-mu[1])/(2.*std[1]*std[1]);
+  double coef = 2.*M_PI*std[0]*std[1];
+  return std::exp(-exponent)/coef;
+}
+
 inline double * getError(double gt_x, double gt_y, double gt_theta, double pf_x, double pf_y, double pf_theta) {
 	static double error[3];
 	error[0] = fabs(pf_x - gt_x);
